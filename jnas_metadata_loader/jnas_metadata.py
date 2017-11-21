@@ -1,6 +1,6 @@
+import os
 from collections import UserList
 from itertools import groupby
-import os
 from typing import NamedTuple
 
 
@@ -30,19 +30,19 @@ class JnasMetadataList(UserList):
                     path=path,
                     news_or_atr=news_or_atr,
                     sex=filename[1],
-                    text_id=filename[2:5],
-                    sen_id=filename[5:8],
-                    mic=filename[9:11],
+                    text_id=filename[2:-6],
+                    sen_id=filename[-6:-3],
+                    mic=filename[-2:],
                 )
             elif news_or_atr == 'B':
                 meta = JnasMetadata(
                     path=path,
                     news_or_atr=news_or_atr,
                     sex=filename[1],
-                    text_id=filename[2:5],
-                    subset=filename[5],
-                    sen_id=filename[6:8],
-                    mic=filename[9:11],
+                    text_id=filename[2:-6],
+                    subset=filename[-6],
+                    sen_id=filename[-5:-3],
+                    mic=filename[-2:],
                 )
             else:
                 raise ValueError('unkown metadata: ' + path)
