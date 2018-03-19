@@ -11,11 +11,12 @@ class JnasMetadata(NamedTuple):
     text_id: str  # 001-150 or P01-P05
     sen_id: str  # three-character or 01-53
     mic: str  # HS or DT
+    post: str = ''  # None or A or B
     subset: str = ''  # None or A-J
 
     @property
     def sp_code(self):
-        return self.sex + self.text_id
+        return self.sex + self.text_id + self.post
 
 
 class JnasMetadataList(UserList):
@@ -30,7 +31,8 @@ class JnasMetadataList(UserList):
                     path=path,
                     news_or_atr=news_or_atr,
                     sex=filename[1],
-                    text_id=filename[2:-6],
+                    text_id=filename[2:5],
+                    post=filename[5:-6],
                     sen_id=filename[-6:-3],
                     mic=filename[-2:],
                 )
@@ -39,7 +41,8 @@ class JnasMetadataList(UserList):
                     path=path,
                     news_or_atr=news_or_atr,
                     sex=filename[1],
-                    text_id=filename[2:-6],
+                    text_id=filename[2:5],
+                    post=filename[5:-6],
                     subset=filename[-6],
                     sen_id=filename[-5:-3],
                     mic=filename[-2:],
