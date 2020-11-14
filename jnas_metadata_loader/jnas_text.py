@@ -1,7 +1,6 @@
-import os
 from collections import UserList
 from itertools import groupby
-from typing import NamedTuple, List
+from typing import List, NamedTuple
 
 
 class JnasText(NamedTuple):
@@ -14,11 +13,11 @@ class JnasText(NamedTuple):
 
     @property
     def text(self):
-        return ''.join(self.words)
+        return "".join(self.words)
 
     @property
     def text_with_space(self):
-        return ' '.join(self.words)
+        return " ".join(self.words)
 
 
 class JnasTextList(UserList):
@@ -26,12 +25,12 @@ class JnasTextList(UserList):
     def create(paths):
         metas = []
         for path in paths:
-            path_parts = path.split('/')
-            news_or_atr = 'N' if path_parts[-2][:2] == 'NP' else 'B'
+            path_parts = path.split("/")
+            news_or_atr = "N" if path_parts[-2][:2] == "NP" else "B"
             for line in open(path).read().splitlines():
-                line_parts = line.split(' ')
+                line_parts = line.split(" ")
 
-                if news_or_atr == 'N':
+                if news_or_atr == "N":
                     words = line_parts[3:]
                     sen_id = line_parts[0]
                 else:
@@ -41,10 +40,10 @@ class JnasTextList(UserList):
                 meta = JnasText(
                     words=words,
                     type=path_parts[-3],
-                    unmarked='unmarked' in path_parts[-2],
+                    unmarked="unmarked" in path_parts[-2],
                     news_or_atr=news_or_atr,
                     sen_id=sen_id,
-                    subset=path_parts[-1].split('_')[0],
+                    subset=path_parts[-1].split("_")[0],
                 )
                 metas.append(meta)
         return JnasTextList(metas)

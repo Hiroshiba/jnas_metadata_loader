@@ -10,7 +10,7 @@ def load_from_paths(jnas_paths):
 
 
 def load_from_directory(jnas_directory_path):
-    paths = frozenset(glob.iglob(os.path.join(jnas_directory_path, '*/*/*/*.wav')))
+    paths = frozenset(glob.iglob(os.path.join(jnas_directory_path, "*/*/*/*.wav")))
     return load_from_paths(paths)
 
 
@@ -19,5 +19,7 @@ def load_original_text_from_paths(text_paths):
 
 
 def load_original_text_from_directory(jnas_directory_path):
-    paths = frozenset(glob.iglob(os.path.join(jnas_directory_path, 'OriginalText/*/*/*.txt')))
+    paths = frozenset(
+        glob.iglob(os.path.join(jnas_directory_path, "OriginalText/*/*/*.txt"))
+    )
     return load_original_text_from_paths(paths)
