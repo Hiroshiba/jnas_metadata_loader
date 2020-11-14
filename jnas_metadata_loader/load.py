@@ -14,7 +14,7 @@ def load_from_directory(jnas_directory_path):
     return load_from_paths(paths)
 
 
-def load_original_text_from_paths(text_paths):
+def load_text_from_paths(text_paths):
     return JnasTextList.create(text_paths)
 
 
@@ -22,4 +22,11 @@ def load_original_text_from_directory(jnas_directory_path):
     paths = frozenset(
         glob.iglob(os.path.join(jnas_directory_path, "OriginalText/*/*/*.txt"))
     )
-    return load_original_text_from_paths(paths)
+    return load_text_from_paths(paths)
+
+
+def load_transcription_text_from_directory(jnas_directory_path):
+    paths = frozenset(
+        glob.iglob(os.path.join(jnas_directory_path, "Transcription/*/*/*.txt"))
+    )
+    return load_text_from_paths(paths)
