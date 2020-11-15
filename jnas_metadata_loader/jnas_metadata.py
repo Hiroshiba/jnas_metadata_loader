@@ -1,10 +1,11 @@
 import os
 from collections import UserList
+from dataclasses import dataclass
 from itertools import groupby
-from typing import NamedTuple
 
 
-class JnasMetadata(NamedTuple):
+@dataclass
+class JnasMetadata:
     path: str
     news_or_atr: str  # N or B
     sex: str  # M or F

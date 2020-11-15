@@ -1,9 +1,11 @@
 from collections import UserList
+from dataclasses import dataclass
 from itertools import groupby
-from typing import List, NamedTuple
+from typing import List
 
 
-class JnasText(NamedTuple):
+@dataclass
+class JnasText:
     words: List[str]
     type: str  # KANJI or KATAKANA or ROMAJI
     unmarked: bool
